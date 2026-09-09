@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Dr. Daniel Pinto - Tarjeta de Presentación</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background: radial-gradient(circle at center, #f0f7f6 0%, #cce5e0 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      padding: 20px;
+    }
+
+    .hint {
+      margin-bottom: 14px;
+      font-size: 14px;
+      color: #2c5950;
+      font-weight: 600;
+      background: rgba(255, 255, 255, 0.7);
+      padding: 6px 14px;
+      border-radius: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Contenedor con perspectiva 3D */
+    .scene {
+      width: 100%;
+      max-width: 420px;
+      aspect-ratio: 1 / 1;
+      perspective: 1200px;
+      cursor: pointer;
+    }
+
+    .card {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+      border-radius: 22px;
+      box-shadow: 0 15px 35px rgba(0, 50, 40, 0.18);
+    }
+
+    .card.is-flipped {
+      transform: rotateY(180deg);
+    }
+
+    .card-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border-radius: 22px;
+      overflow: hidden;
+      background-color: #ffffff;
+    }
+
+    .card-face img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .card-back {
+      transform: rotateY(180deg);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hint">
+    <span>🔄</span> Toca la tarjeta para voltear
+  </div>
+
+  <div class="scene" id="cardContainer">
+    <div class="card" id="cardElement">
+      <!-- Frente -->
+      <div class="card-face card-front">
+        <img src="frente.jpg" alt="Dr. Daniel Pinto - Tarjeta Anverso">
+      </div>
+      <!-- Reverso -->
+      <div class="card-face card-back">
+        <img src="reverso.jpg" alt="Dr. Daniel Pinto - Servicios Reverso">
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const card = document.getElementById('cardElement');
+    const scene = document.getElementById('cardContainer');
+
+    scene.addEventListener('click', () => {
+      card.classList.toggle('is-flipped');
+    });
+  </script>
+
+</body>
+</html>
